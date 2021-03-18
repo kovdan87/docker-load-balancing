@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  web1:
+    image: tomcat:9.0.41-jdk11
+    build: ..
+    environment:
+      - DEMO_NAME=Web1  
+    ports: 
+      - "8080:8080"
+    volumes:
+      - web1_data:/usr/local/tomcat/webapps/
+      - type: bind
+        source: /vagrant/web.war
+        target: /usr/local/tomcat/webapps/web.war  
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://18.184.218.192:16543/chinook
+      - SPRING_DATASOURCE_USERNAME=vagrant
+      - SPRING_DATASOURCE_PASSWORD=vagrant
+volumes:
+  web1_data:

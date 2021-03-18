@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  lb:
+    image: nginx
+    ports:
+      - '80:80' 
+    volumes:
+      - lb_data:/vagrant
+      - type: bind
+        source: /vagrant/lb/default.conf
+        target: /etc/nginx/conf.d/default.conf 
+volumes:
+    lb_data:
